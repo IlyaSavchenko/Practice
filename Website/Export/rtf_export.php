@@ -1,6 +1,6 @@
 <?php
 	function main() {
-		session_start();
+		@session_start();
 		$table = $_SESSION["table"];
 		$file = CreateFile($table);
 			SendFile($file);

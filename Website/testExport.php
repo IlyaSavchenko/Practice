@@ -34,7 +34,7 @@
 			// $table[5][0] = "Biology";
 			// $table[5][1] = "4";
 			
-			$_SESSION["table"] = $table[0];
+			$_SESSION["origintable"] = $table[0];
 			// $_SESSION["clientName"] = "Borisov Vasily"
 		?>
 		<form method = "post" action = "./Export/export.php">
