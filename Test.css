@@ -42,8 +42,8 @@ cursor: hand;
 
 .exitst {
     background: url("/image/exitst1.png") no-repeat scroll 0 100% transparent;
-    width: 120px;
-    height: 35px;
+    width: 98px;
+    height: 33px;
     border: 0px;
 cursor: pointer; 
 cursor: hand; 
@@ -135,5 +135,33 @@ cursor: hand;
 
 .ok:active {
     background: url("/image/ok11.png") no-repeat scroll 0 100% transparent; // Показываем нижнее изображение
+    padding: 15px 0 9px 10px; // Приспускаем текст ссылки в кнопке для пущего эффекта
+}
+
+.setst {
+    background: url("/image/setting.png") no-repeat scroll 0 100% transparent;
+    width: 98px;
+    height: 33px;
+    border: 0px;
+cursor: pointer; 
+cursor: hand; 
+}
+
+.setst:active {
+    background: url("/image/setting1.png") no-repeat scroll 0 100% transparent; // Показываем нижнее изображение
+    padding: 15px 0 9px 10px; // Приспускаем текст ссылки в кнопке для пущего эффекта
+}
+
+.savest {
+    background: url("/image/save1.png") no-repeat scroll 0 100% transparent;
+    width: 98px;
+    height: 31px;
+    border: 0px;
+cursor: pointer; 
+cursor: hand; 
+}
+
+.savest:active {
+    background: url("/image/save.png") no-repeat scroll 0 100% transparent; // Показываем нижнее изображение
     padding: 15px 0 9px 10px; // Приспускаем текст ссылки в кнопке для пущего эффекта
 }
