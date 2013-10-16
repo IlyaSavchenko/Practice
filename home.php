@@ -1,16 +1,54 @@
 <?php session_start(); 
-	if (isset($_POST["subjects"])) {
-		$selected = $_POST["subjects"];
-		// foreach ($selected as $key => $value) {
-		// 	echo $key . '  ' . $value . "<br>";
-		// }
-		$table["name"] = $_SESSION['origintable']["name"];
-		foreach ($selected as $key => $value) {
-			$table["marks"][$_SESSION['temptable'][$value][0]] = $_SESSION['temptable'][$value][1];
+	if ((isset($_SESSION['exit']) && $_SESSION['exit'] == true) || isset($_POST['Exit'])) {
+		$_SESSION['login'] = null;
+		$_SESSION['exit'] = true;
+		$_SESSION['loginchoose'] = null;
+		 echo "<script>document.location.replace('./index.php');</script>";
+		 exit;
+	} else {
+		if (isset($_POST["subjects"])) {
+			$selected = $_POST["subjects"];
+			// foreach ($selected as $key => $value) {
+			// 	echo $key . '  ' . $value . "<br>";
+			// }
+			$table["name"] = $_SESSION['origintable']["name"];
+			foreach ($selected as $key => $value) {
+				$table["marks"][$_SESSION['temptable'][$value][0]] = $_SESSION['temptable'][$value][1];
+			}
+			$_SESSION['origintable'] = $table;
+			echo "<script>document.location.replace('./Export/export.php');</script>";
+			exit();
 		}
-		$_SESSION['origintable'] = $table;
-		echo "<script>document.location.replace('./Export/export.php');</script>";
-		exit();
+		if (isset($_POST['save_settings'])) {
+			if (isset($_FILES['avatar'])) {
+				//echo "new avatar<br>";
+				if (($_FILES["avatar"]["type"] == "image/jpg") || ($_FILES["avatar"]["type"] == "image/jpeg")) {
+					//echo "good file format<br>";
+					if ($_FILES["avatar"]["size"] < 10000000) {
+						//echo "good size<br>";
+						if ($_FILES["avatar"]["error"] <= 0) {
+							//echo "not error<br>";
+							if (file_exists("stAvatars/" . $_SESSION['login'] . ".jpg")) {
+								//echo "updating<br>";
+								unlink("stAvatars/" . $_SESSION['login'] . ".jpg");
+							}
+							move_uploaded_file($_FILES["avatar"]["tmp_name"], "stAvatars/" . $_SESSION['login'] . ".jpg");
+						} else{
+							 //echo "some error<br>";
+						}
+					} else {
+						//echo "bad file size<br>";
+						//echo $_FILES["avatar"]["size"] . "<br>";
+					}
+				} else {
+					//echo "bad format";
+				}
+			} else {
+				//echo "not new avatar";
+			}
+		} else {
+			//echo "not save";
+		}
 	}
 ?>
 <html>
@@ -38,20 +76,14 @@
 		</script>
 	</head>
 	<body background="img.jpg">
-	<table border="0" align="center" width="100%">
+	<table border="0" align="center" cellspacing="0" width="100%">
     	<tr>	
     	<td align="center"><img src='image/bigHead.png' alt='Stud Journal'>
     	</td>
     </tr>
     <tr>
+    	<td>
     <?php
-		if ((isset($_SESSION['exit']) && $_SESSION['exit'] == true) || isset($_POST['Exit'])) {
-				$_SESSION['login'] = null;
-				$_SESSION['exit'] = true;
-				$_SESSION['loginchoose'] = null;
-				 echo "<script>document.location.replace('./index.php');</script>";
-				 exit;
-			}
 			$login = $_SESSION['login'];
 			
 			$link = mysql_connect("localhost", "root", ""); echo mysql_error();
@@ -85,27 +117,40 @@
 								  WHERE b.stud_login = '$login' and a.stud_id = b.stud_id and 
 								  a.subj_id = c.subj_id and c.subj_id = e.subj_id and e.lect_id = d.lect_id", $link);
 			$markList = MYSQL_NUMROWS($markRes);
+
+			$studAvatar = mysql_query("SELECT s.stud_avatar
+								  FROM students s
+								  WHERE stud_login = \"" . $_SESSION['login'] . "\"", $link);
+			$stAvatarList = MYSQL_NUMROWS($studAvatar);
+			$studAvatarPict ="./stAvatars/defaultAvatar.png";
+			if(file_exists("stAvatars/" . $_SESSION['login'] . ".jpg")){
+				$studAvatarPict = "stAvatars/" . $_SESSION['login'] . ".jpg";
+			}
 	?>
 		<font>
 		<center>
-		<table align="center" border="0">
+		<table cellspacing="15" align="center" border="0">
 		<tr>
-			<td>
-				<h1>
-					<?php echo $nameList[0] . " " . $nameList[1] ; ?>
-				</h1>
-			</td>
-			<td>
+			<td valign = "top" align = "center" rowspan = "2">
+				<img <?php echo "src=\"".$studAvatarPict."\""; ?> alt="Smiley face" width = "200" height = "200"></br>
+				<input type="button" value="" onclick="location.href='./settings.php'"  class = "setst" /></br>
 				<?php
-					echo "<form method = 'post' action = './home.php'><input name = 'Exit' type = 'submit' value = '' class = 'exitst'></form>";
+					echo "<form align  = 'center' method = 'post' action = './home.php'><input align  = 'center' name = 'Exit' type = 'submit' value = '' class = 'exitst'></form>";
 					// if ())
 					// { 
 					// 	$_SESSION['exit'] = true;
 					// }
 				?>
 			</td>
+			<td>
+				<h1>
+					<?php echo $nameList[0] . " " . $nameList[1] ; ?>
+				</h1>
+			</td>
+
 		</tr>		
 		</center>
+		<tr> <td valing="top">
 		<?php
 			//$table['name'] = $nameList[0] . "_" . $nameList[1];
 			for($i = 0; $i < $markList; $i++ )
@@ -116,8 +161,6 @@
 			}
 			
 			$_SESSION['origintable']['name'] = $nameList[0] . "_" . $nameList[1];// = $table;
-			
-			
 			echo "<form align='center' method = 'post' action = './home.php' name=\"subjects\">";
 			echo "<table cellspacing = '0' border = 3 align = 'center'>";	
 				echo "<tr>";
@@ -151,7 +194,11 @@
 			// echo "<form id='forma' action='./Export/export.php' method='post'> 
 			// 	  <p align = 'center' ><input type='submit' name='submit' 
 			// 	  value=' ' class = sm style='font-size: 15pt'><br></p></form>";
-		?></tr>
+		?></td>
+		</tr>
         </table>
+    </td>
+    </tr>
+	</table>
 	</body>
 </html>
