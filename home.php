@@ -118,10 +118,6 @@
 								  a.subj_id = c.subj_id and c.subj_id = e.subj_id and e.lect_id = d.lect_id", $link);
 			$markList = MYSQL_NUMROWS($markRes);
 
-			$studAvatar = mysql_query("SELECT s.stud_avatar
-								  FROM students s
-								  WHERE stud_login = \"" . $_SESSION['login'] . "\"", $link);
-			$stAvatarList = MYSQL_NUMROWS($studAvatar);
 			$studAvatarPict ="./stAvatars/defaultAvatar.png";
 			if(file_exists("stAvatars/" . $_SESSION['login'] . ".jpg")){
 				$studAvatarPict = "stAvatars/" . $_SESSION['login'] . ".jpg";
