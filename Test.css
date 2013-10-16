@@ -1,0 +1,139 @@
+.sendsubmit {
+    background: url("/image/but1.png") no-repeat scroll 0 100% transparent;
+    width: 100px;
+    height: 35px;
+    border: 0px;
+cursor: pointer; 
+cursor: hand; 
+}
+
+.sendsubmit:active {
+    background: url("/image/but11.png") no-repeat scroll 0 100% transparent; // Показываем нижнее изображение
+    padding: 15px 0 9px 10px; // Приспускаем текст ссылки в кнопке для пущего эффекта
+}
+
+.regsubmit {
+    background: url("/image/regBut1.png") no-repeat scroll 0 100% transparent;
+    width: 120px;
+    height: 35px;
+    border: 0px;
+cursor: pointer; 
+cursor: hand; 
+}
+
+.regsubmit:active {
+    background: url("/image/regBut11.png") no-repeat scroll 0 100% transparent; // Показываем нижнее изображение
+    padding: 15px 0 9px 10px; // Приспускаем текст ссылки в кнопке для пущего эффекта
+}
+
+.exitlect {
+    background: url("/image/exitlect1.png") no-repeat scroll 0 100% transparent;
+    width: 75px;
+    height: 20px;
+    border: 0px;
+cursor: pointer; 
+cursor: hand; 
+}
+
+.exitlect:active {
+    background: url("/image/exitlect11.png") no-repeat scroll 0 100% transparent; // Показываем нижнее изображение
+    padding: 15px 0 9px 10px; // Приспускаем текст ссылки в кнопке для пущего эффекта
+}
+
+.exitst {
+    background: url("/image/exitst1.png") no-repeat scroll 0 100% transparent;
+    width: 120px;
+    height: 35px;
+    border: 0px;
+cursor: pointer; 
+cursor: hand; 
+}
+
+.exitst:active {
+    background: url("/image/exitst11.png") no-repeat scroll 0 100% transparent; // Показываем нижнее изображение
+    padding: 15px 0 9px 10px; // Приспускаем текст ссылки в кнопке для пущего эффекта
+}
+
+.sm {
+    background: url("/image/sm1.png") no-repeat scroll 0 100% transparent;
+    width: 125px;
+    height: 31px;
+    border: 0px;
+cursor: pointer; 
+cursor: hand; 
+}
+
+.sm:active {
+    background: url("/image/sm11.png") no-repeat scroll 0 100% transparent; // Показываем нижнее изображение
+    padding: 15px 0 9px 10px; // Приспускаем текст ссылки в кнопке для пущего эффекта
+}
+
+.add {
+    background: url("/image/add1.png") no-repeat scroll 0 100% transparent;
+    width: 130px;
+    height: 31px;
+    border: 0px;
+cursor: pointer; 
+cursor: hand; 
+}
+
+.add:active {
+    background: url("/image/add11.png") no-repeat scroll 0 100% transparent; // Показываем нижнее изображение
+    padding: 15px 0 9px 10px; // Приспускаем текст ссылки в кнопке для пущего эффекта
+}
+
+.upd {
+    background: url("/image/upd1.png") no-repeat scroll 0 100% transparent;
+    width: 130px;
+    height: 31px;
+    border: 0px;
+cursor: pointer; 
+cursor: hand; 
+}
+
+.upd:active {
+    background: url("/image/upd11.png") no-repeat scroll 0 100% transparent; // Показываем нижнее изображение
+    padding: 15px 0 9px 10px; // Приспускаем текст ссылки в кнопке для пущего эффекта
+}
+
+.mid {
+    background: url("/image/mid1.png") no-repeat scroll 0 100% transparent;
+    width: 130px;
+    height: 31px;
+    border: 0px;
+cursor: pointer; 
+cursor: hand; 
+}
+
+.mid:active {
+    background: url("/image/mid11.png") no-repeat scroll 0 100% transparent; // Показываем нижнее изображение
+    padding: 15px 0 9px 10px; // Приспускаем текст ссылки в кнопке для пущего эффекта
+}
+
+.filt {
+    background: url("/image/filt1.png") no-repeat scroll 0 100% transparent;
+    width: 130px;
+    height: 31px;
+    border: 0px;
+cursor: pointer; 
+cursor: hand; 
+}
+
+.filt:active {
+    background: url("/image/filt11.png") no-repeat scroll 0 100% transparent; // Показываем нижнее изображение
+    padding: 15px 0 9px 10px; // Приспускаем текст ссылки в кнопке для пущего эффекта
+}
+
+.ok {
+    background: url("/image/ok1.png") no-repeat scroll 0 100% transparent;
+    width: 40px;
+    height: 25px;
+    border: 0px;
+cursor: pointer; 
+cursor: hand; 
+}
+
+.ok:active {
+    background: url("/image/ok11.png") no-repeat scroll 0 100% transparent; // Показываем нижнее изображение
+    padding: 15px 0 9px 10px; // Приспускаем текст ссылки в кнопке для пущего эффекта
+}

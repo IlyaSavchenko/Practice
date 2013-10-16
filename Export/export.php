@@ -1,6 +1,14 @@
-<?php session_start(); ?><html>
+<?php session_start(); 	if (!isset($_SESSION['login'])) { echo "<script>document.location.replace('../index.php');</script>"; } ?>
+<html>
 	<head>
+		<link  rel="stylesheet" type="text/css"/href="../test.css">
 		<title>Download files</title>
+		 <style>
+        	body {
+	            background: url(../image/bgg.png) no-repeat;
+	            background-size: 100%; /* Современные браузеры */
+        	}
+        </style>
 		<?php
 			$table = $_SESSION["origintable"];
 			$filter = isset($_POST["filter"]) && $_POST['filter'] == "Apply filter";
@@ -13,23 +21,17 @@
 				{ 
 					foreach ($table["marks"] as $key => $value) {
 						$color = "white";
-						switch ($value) {
-							case 5:
-								$color = "lightgreen";
-								break;
-							case 4:
-								$color = "lightblue";
-								break;
-							case 3:
-								$color = "yellow";
-								break;
-							case 2:
-								$color = "red";
-								break;
-							default:
-								$color = "white";
-								break;
-						}
+						if ($value >= 80)
+							$color = "lightgreen";
+						else if ($value >= 55)
+							$color = "lightblue";
+						else if ($value >= 30)
+							$color = "yellow";
+						else if ($value > 0)
+							$color = "red";
+						else
+							$color = "white";
+
 						echo("<tr bgcolor = " . $color . "><td>".$key."</td><td>".$value."</td></tr>");
 					}
 				}
@@ -57,7 +59,7 @@
 				{
 					$newTable["name"] = $table["name"];
 					foreach ($table["marks"] as $key => $value) {
-						if ($value == $mark) 
+						if ($value >= $mark) 
 						{
 							$newTable["marks"][$key] = $value;
 						}

@@ -27,23 +27,16 @@
 	    $pdf->Ln();
 
 	    foreach ($table["marks"] as $key => $value) {
-	    	switch ($value) {
-	    		case 5:
-	    			$pdf->SetFillColor(56, 256, 56);
-	    			break;
-	    		case 4:
-	    			$pdf->SetFillColor(120, 240, 256);
-	    			break;
-	    		case 3:
-	    			$pdf->SetFillColor(256, 230, 0);
-	    			break;
-	    		case 2:
-	    			$pdf->SetFillColor(256, 20, 20);
-	    			break;
-	    		default:
-	    			$pdf->SetFillColor(256, 256, 256);
-	    			break;
-	    	}
+			if ($value >= 80)
+	    		$pdf->SetFillColor(56, 256, 56);
+			else if ($value >= 55)
+    			$pdf->SetFillColor(120, 240, 256);
+			else if ($value >= 30)
+    			$pdf->SetFillColor(256, 230, 0);
+			else if ($value > 0)
+    			$pdf->SetFillColor(256, 20, 20);
+    		else
+    			$pdf->SetFillColor(256, 256, 256);
 	    	$pdf->Cell(70, 7, $key, 1, 0, 'C' ,true);
 		    $pdf->Cell(20, 7, $value, 1, 0, 'C', true);
 		    $pdf->Ln();
